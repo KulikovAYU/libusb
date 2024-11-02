@@ -1,4 +1,4 @@
-name: macOS
+name: macOS Multi-Arch Build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -40,8 +40,8 @@ jobs:
         run: cd Xcode && xcodebuild -project libusb.xcodeproj -arch ${{ matrix.arch }}
 
          # Сохранение артефактов сборки
-      - name: Upload build artifacts
+      - name: Upload build artifacts  ${{ matrix.arch }}
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts_mac_os_${{ matrix.arch }}
+          name: build-artifacts_mac_os_${{ matrix.arch }}_macos
           path: Xcode/build/Release
