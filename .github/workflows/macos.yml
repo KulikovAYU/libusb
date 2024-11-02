@@ -43,5 +43,5 @@ jobs:
       - name: Upload build artifacts  ${{ matrix.arch }}
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts_mac_os_${{ matrix.arch }}_macos
+          name: build-artifacts_mac_os_${{ matrix.arch }}
           path: Xcode/build/Release
