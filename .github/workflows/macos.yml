@@ -37,9 +37,7 @@ jobs:
 
          # Сохранение артефактов сборки
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts
-          path: |
-            ./Xcode/build/Release/**          # Путь к собранным артефактам
-
+          name: build-artifacts_mac_os
+          path: build
