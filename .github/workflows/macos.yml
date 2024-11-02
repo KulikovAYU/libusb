@@ -37,7 +37,7 @@ jobs:
 
       - name: Xcode
         shell: bash
-        run: cd Xcode && xcodebuild -project libusb.xcodeproj -arch ${matrix.arch}
+        run: cd Xcode && xcodebuild -project libusb.xcodeproj -arch ${{ matrix.arch }}
 
          # Сохранение артефактов сборки
       - name: Upload build artifacts
