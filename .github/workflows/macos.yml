@@ -34,3 +34,12 @@ jobs:
       - name: Xcode
         shell: bash
         run: cd Xcode && xcodebuild -project libusb.xcodeproj
+
+         # Сохранение артефактов сборки
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            build/**          # Путь к собранным артефактам
+            Xcode/build/**    # Если артефакты собираются здесь
