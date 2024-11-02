@@ -41,5 +41,5 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            /Users/runner/work/libusb/libusb/Xcode/build/Release/**          # Путь к собранным артефактам
+            /Xcode/build/Release/**          # Путь к собранным артефактам
 
