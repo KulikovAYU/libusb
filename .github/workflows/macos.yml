@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: macos-latest
 
+    strategy:
+      matrix:
+        arch: [x86_64, arm64]
+        
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job
@@ -33,11 +37,11 @@ jobs:
 
       - name: Xcode
         shell: bash
-        run: cd Xcode && xcodebuild -project libusb.xcodeproj
+        run: cd Xcode && xcodebuild -project libusb.xcodeproj -arch ${matrix.arch}
 
          # Сохранение артефактов сборки
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts_mac_os
+          name: build-artifacts_mac_os_${{ matrix.arch }}
           path: Xcode/build/Release
