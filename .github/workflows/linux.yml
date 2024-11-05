@@ -31,7 +31,7 @@ jobs:
 
       - name: netlink
         # Disable tests for netlink as it doesn't seem to work in the CI environment.
-        run: .private/ci-build.sh --build-dir build-netlink --no-test -- --disable-udev --target-arch=${{ matrix.arch }}
+        run: .private/ci-build.sh --build-dir build-netlink --no-test -- --disable-udev
 
       - name: udev
         run: .private/ci-build.sh --build-dir build-udev -- --enable-udev
