@@ -31,16 +31,16 @@ jobs:
 
       - name: netlink
         # Disable tests for netlink as it doesn't seem to work in the CI environment.
-        run: .private/ci-build.sh --build-dir build-netlink --no-test -- --disable-udev --install
+        run: .private/ci-build.sh --build-dir build-netlink --no-test -- --disable-udev
 
       - name: udev
-        run: .private/ci-build.sh --build-dir build-udev -- --enable-udev --install
+        run: .private/ci-build.sh --build-dir build-udev -- --enable-udev
 
       - name: debug-log
-        run: .private/ci-build.sh --build-dir build-debug -- --enable-debug-log --install
+        run: .private/ci-build.sh --build-dir build-debug -- --enable-debug-log
 
       - name: disable-log
-        run: .private/ci-build.sh --build-dir build-nolog -- --disable-log --install
+        run: .private/ci-build.sh --build-dir build-nolog -- --disable-log
 
       - uses: mymindstorm/setup-emsdk@v13
 
@@ -55,27 +55,27 @@ jobs:
 
       # Выполнение команды make для сборки проекта (build-debug: Директория для сборки с включенной отладочной информацией.)
       - name: Build project (build-debug)
-        run: make
+        run: make  --install
         working-directory: ./build-debug
 
       # Выполнение команды make для сборки проекта (build-emscripten: Директория для сборки, нацеленной на платформу Emscripten (предположительно для WebAssembly).)
       - name: Build project (build-emscripten)
-        run: make
+        run: make  --install
         working-directory: ./build-emscripten
 
       # Выполнение команды make для сборки проекта (build-netlink: Директория для сборки компонента Netlink, где тесты отключены.)
       - name: Build project (build-netlink)
-        run: make
+        run: make  --install
         working-directory: ./build-netlink
 
       # Выполнение команды make для сборки проекта (build-nolog: Директория для сборки с отключением логирования.)
       - name: Build project (build-nolog)
-        run: make
+        run: make  --install
         working-directory: ./build-nolog
 
       # Выполнение команды make для сборки проекта (build-udev: Директория для сборки с поддержкой udev.)
       - name: Build project (build-udev)
-        run: make
+        run: make  --install
         working-directory: ./build-udev
         
       # Сохранение артефактов сборки
