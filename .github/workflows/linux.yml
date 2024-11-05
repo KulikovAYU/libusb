@@ -56,27 +56,27 @@ jobs:
       # Выполнение команды make для сборки проекта (build-debug: Директория для сборки с включенной отладочной информацией.)
       - name: Build project (build-debug)
         run: make
-        working-directory: .private/build-debug
+        working-directory: ./build-debug
 
       # Выполнение команды make для сборки проекта (build-emscripten: Директория для сборки, нацеленной на платформу Emscripten (предположительно для WebAssembly).)
       - name: Build project (build-emscripten)
         run: make
-        working-directory: .private/build-emscripten
+        working-directory: ./build-emscripten
 
       # Выполнение команды make для сборки проекта (build-netlink: Директория для сборки компонента Netlink, где тесты отключены.)
       - name: Build project (build-netlink)
         run: make
-        working-directory: .private/build-netlink
+        working-directory: ./build-netlink
 
       # Выполнение команды make для сборки проекта (build-nolog: Директория для сборки с отключением логирования.)
       - name: Build project (build-nolog)
         run: make
-        working-directory: .private/build-nolog
+        working-directory: ./build-nolog
 
       # Выполнение команды make для сборки проекта (build-udev: Директория для сборки с поддержкой udev.)
       - name: Build project (build-udev)
         run: make
-        working-directory: .private/build-udev
+        working-directory: ./build-udev
         
       # Сохранение артефактов сборки
       - name: Upload build artifacts  ${{ matrix.arch }}
