@@ -77,10 +77,13 @@ jobs:
       - name: Build project (build-udev)
         run: sudo make install
         working-directory: ./build-udev
-        
+
+      - name: Copy /usr/local/lib to workspace
+        run: cp -r /usr/local/lib ./usr-local-lib
+  
       # Сохранение артефактов сборки
       - name: Upload build artifacts  ${{ matrix.arch }}
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts_linux_${{ matrix.arch }}
-          path: .
+          path: ., ./usr-local-lib
