@@ -1,8 +1,8 @@
-name: linux
+name: linux Multi-Arch Build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 # A workflow run is made up of one or more jobs that can run
 # sequentially or in parallel
@@ -83,4 +83,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts_linux_${{ matrix.arch }}
-          path: .
+          path: usr-local-lib
