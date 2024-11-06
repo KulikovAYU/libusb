@@ -54,12 +54,12 @@ jobs:
         run: .private/ci-container-build.sh docker.io/amd64/ubuntu:rolling
 
       # Выполнение команды make для сборки проекта (build-debug: Директория для сборки с включенной отладочной информацией.)
-      - name: Build project (build-debug)
+      - name: Install project (build-debug)
         run: sudo make install
         working-directory: ./build-debug
 
       # Выполнение команды make для сборки проекта (build-emscripten: Директория для сборки, нацеленной на платформу Emscripten (предположительно для WebAssembly).)
-      - name: Build project (build-emscripten)
+      - name: Install project (build-emscripten)
         run: sudo  make install
         working-directory: ./build-emscripten
 
