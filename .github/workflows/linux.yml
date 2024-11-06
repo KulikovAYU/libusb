@@ -31,16 +31,16 @@ jobs:
 
       - name: netlink
         # Disable tests for netlink as it doesn't seem to work in the CI environment.
-        run: .private/ci-build.sh --build-dir build-netlink --no-test -- --disable-udev --prefix="${{ github.workspace }}/usr-local-lib"
+        run: .private/ci-build.sh --build-dir build-netlink --no-test -- --disable-udev --prefix="${{ github.workspace }}/usr-local-lib/netlink"
 
       - name: udev
-        run: .private/ci-build.sh --build-dir build-udev -- --enable-udev --prefix="${{ github.workspace }}/usr-local-lib"
+        run: .private/ci-build.sh --build-dir build-udev -- --enable-udev --prefix="${{ github.workspace }}/usr-local-lib/udev"
 
       - name: debug-log
-        run: .private/ci-build.sh --build-dir build-debug -- --enable-debug-log --prefix="${{ github.workspace }}/usr-local-lib"
+        run: .private/ci-build.sh --build-dir build-debug -- --enable-debug-log --prefix="${{ github.workspace }}/usr-local-lib/debug-log"
 
       - name: disable-log
-        run: .private/ci-build.sh --build-dir build-nolog -- --disable-log --prefix="${{ github.workspace }}/usr-local-lib"
+        run: .private/ci-build.sh --build-dir build-nolog -- --disable-log --prefix="${{ github.workspace }}/usr-local-lib/disable-log"
 
       - uses: mymindstorm/setup-emsdk@v13
 
@@ -64,17 +64,17 @@ jobs:
         working-directory: ./build-emscripten
 
       # Выполнение команды make для сборки проекта (build-netlink: Директория для сборки компонента Netlink, где тесты отключены.)
-      - name: Build project (build-netlink)
+      - name: Install project (build-netlink)
         run: sudo make install
         working-directory: ./build-netlink
 
       # Выполнение команды make для сборки проекта (build-nolog: Директория для сборки с отключением логирования.)
-      - name: Build project (build-nolog)
+      - name: Install project (build-nolog)
         run: sudo make install
         working-directory: ./build-nolog
 
       # Выполнение команды make для сборки проекта (build-udev: Директория для сборки с поддержкой udev.)
-      - name: Build project (build-udev)
+      - name: Install project (build-udev)
         run: sudo make install
         working-directory: ./build-udev
 
@@ -83,5 +83,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts_linux_${{ matrix.arch }}
-          path: |
-            "${{ github.workspace }}/usr-local-lib"
+          path: .
