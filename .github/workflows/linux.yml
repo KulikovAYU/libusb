@@ -84,5 +84,4 @@ jobs:
         with:
           name: build-artifacts_linux_${{ matrix.arch }}
           path: |
-            .
             "${{ github.workspace }}/usr-local-lib"
